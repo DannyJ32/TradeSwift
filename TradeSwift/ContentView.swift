@@ -14,7 +14,7 @@ struct ContentView: View {
                 HomePage()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            Tab("Market", systemImage: "placeholdertext.fill") {
+            Tab("Market", systemImage: "chart.line.uptrend.xyaxis") {
                 MarketPage()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
