@@ -15,7 +15,7 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             Tab("Market", systemImage: "placeholdertext.fill") {
-                MarketPage()
+                MarketPage(function: "SYMBOL_SEARCH", keyword: "apple")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             Tab("AI Insights", systemImage: "placeholdertext.fill") {
