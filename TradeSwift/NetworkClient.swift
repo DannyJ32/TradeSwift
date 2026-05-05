@@ -12,17 +12,17 @@ import SwiftUI
 class NetworkClient {
     
     let apiKey = "d7sde89r01qorsviadkgd7sde89r01qorsviadl0"
-    var rawJSON: String = "Loading..."
+    var quote: StockQuote? = nil
     
-    func fetchQuote(symbol: String) async -> String {
+    func fetchQuote(symbol: String) async {
         let urlStr = "https://finnhub.io/api/v1/quote?symbol=\(symbol)&token=\(apiKey)"
-        guard let url = URL(string: urlStr) else { return "Bad URL" }
+        guard let url = URL(string: urlStr) else { return }
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            return String(data: data, encoding: .utf8) ?? "No data"
+            quote = try JSONDecoder().decode(StockQuote.self, from: data)
         } catch {
-            return "Error: \(error.localizedDescription)"
+            print(error)
         }
     }
 }
