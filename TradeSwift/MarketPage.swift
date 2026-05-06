@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MarketPage: View {
-    
     @State private var network = NetworkClient()
     @State private var searchText: String = ""
     @State private var quotes: [String: StockQuote] = [:]
@@ -21,8 +20,8 @@ struct MarketPage: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.black.ignoresSafeArea()
-                
+                Color(white: 0.15).ignoresSafeArea()
+
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
                         
