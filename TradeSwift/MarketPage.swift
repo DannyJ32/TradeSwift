@@ -38,7 +38,9 @@ struct MarketPage: View {
                             .padding(.top, 8)
                         
                         ForEach(watchlist, id: \.symbol) { stock in
-                            TickerRow(symbol: stock.symbol, name: stock.name, quote: quotes[stock.symbol])
+                            NavigationLink(destination: StockDetailView(symbol: stock.symbol, name: stock.name, quote: quotes[stock.symbol])) {
+                                TickerRow(symbol: stock.symbol, name: stock.name, quote: quotes[stock.symbol])
+                            }
                             Divider().overlay(Color.gray.opacity(0.5))
                         }
                     }
