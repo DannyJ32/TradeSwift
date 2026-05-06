@@ -39,7 +39,7 @@ struct MarketPage: View {
                             .padding(.top, 8)
                         
                         ForEach(watchlist, id: \.symbol) { stock in
-                            WatchlistRow(symbol: stock.symbol, name: stock.name, quote: quotes[stock.symbol])
+                            TickerRow(symbol: stock.symbol, name: stock.name, quote: quotes[stock.symbol])
                             Divider().overlay(Color.gray.opacity(0.5))
                         }
                     }
@@ -77,7 +77,7 @@ struct MarketPage: View {
     }
 }
 
-struct WatchlistRow: View {
+struct TickerRow: View {
     let symbol: String
     let name: String
     let quote: StockQuote?
