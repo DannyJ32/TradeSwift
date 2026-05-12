@@ -26,3 +26,20 @@ class NetworkClient {
         }
     }
 }
+
+@Observable
+class StockDetailViewModel {
+    var quote: StockQuote?
+    private let network = NetworkClient()
+
+    func load(symbol: String, preloaded: StockQuote?) {
+        if let preloaded {
+            quote = preloaded
+        } else {
+            Task {
+                await network.fetchQuote(symbol: symbol)
+                quote = network.quote
+            }
+        }
+    }
+}
