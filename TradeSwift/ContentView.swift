@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView() {
-            Tab("Home", systemImage: "placeholdertext.fill") {
+            Tab("Home", systemImage: "house.fill") {
                 HomePage()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
@@ -18,7 +18,7 @@ struct ContentView: View {
                 MarketPage()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            Tab("AI Insights", systemImage: "placeholdertext.fill") {
+            Tab("AI Insights", systemImage: "sparkles") {
                 AIPage()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }

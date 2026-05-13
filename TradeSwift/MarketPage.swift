@@ -37,11 +37,34 @@ struct MarketPage: View {
                             .foregroundStyle(.gray)
                             .padding(.top, 8)
                         
-                        ForEach(watchlist, id: \.symbol) { stock in
-                            NavigationLink(destination: StockDetailView(symbol: stock.symbol, name: stock.name, quote: quotes[stock.symbol])) {
-                                TickerRow(symbol: stock.symbol, name: stock.name, quote: quotes[stock.symbol])
+                        if watchlist.isEmpty {
+                            VStack(spacing: 8) {
+                                Image(systemName: "star.slash")
+                                    .font(.largeTitle)
+                                    .foregroundStyle(.gray)
+                                Text("Your watchlist is empty")
+                                    .foregroundStyle(.gray)
+                                Text("Search for a symbol above to add one")
+                                    .font(.caption)
+                                    .foregroundStyle(.gray)
                             }
-                            Divider().overlay(Color.gray.opacity(0.5))
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 60)
+                        } else {
+                            ForEach(watchlist, id: \.symbol) { stock in
+                                NavigationLink(destination: StockDetailView(symbol: stock.symbol, name: stock.name, quote: quotes[stock.symbol])) {
+                                    TickerRow(symbol: stock.symbol, name: stock.name, quote: quotes[stock.symbol])
+                                }
+                                .contextMenu {
+                                    Button(role: .destructive) {
+                                        watchlist.removeAll { $0.symbol == stock.symbol }
+                                        quotes.removeValue(forKey: stock.symbol)
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
+                                Divider().overlay(Color.gray.opacity(0.5))
+                            }
                         }
                     }
                     .padding()
